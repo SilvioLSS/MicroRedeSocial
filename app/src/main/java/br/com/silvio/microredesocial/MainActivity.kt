@@ -1,9 +1,12 @@
 package br.com.silvio.microredesocial
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.silvio.microredesocial.databinding.ActivityMainBinding
+import br.com.silvio.miniredesocial.HomeActivity
+import br.com.silvio.miniredesocial.SignUpActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +28,10 @@ class MainActivity : AppCompatActivity() {
 
     fun setupListeners() {
         binding.btnLogin.setOnClickListener { autenticarUsuario() }
+
+        binding.btnCreateUser.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
     }
 
     fun autenticarUsuario(){
@@ -35,11 +42,17 @@ class MainActivity : AppCompatActivity() {
             .signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Bem-vindo!", Toast.LENGTH_SHORT).show()
+                    irParaHome()
                 } else {
                     Toast.makeText(this, "Erro no login", Toast.LENGTH_LONG).show()
                 }
             }
     }
 
+    private fun irParaHome() {
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }
