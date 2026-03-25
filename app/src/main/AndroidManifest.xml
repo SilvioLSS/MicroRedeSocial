@@ -24,15 +24,17 @@
 
 
         <activity
-            android:name="br.com.silvio.miniredesocial.HomeActivity"
+            android:name="br.com.silvio.microredesocial.HomeActivity"
             android:exported="false" />
 
 
         <activity
-            android:name="br.com.silvio.miniredesocial.SignUpActivity"
+            android:name="br.com.silvio.microredesocial.SignUpActivity"
             android:exported="false" />
 
-
+        <activity
+            android:name="br.com.silvio.microredesocial.ProfileActivity"
+            android:exported="false" />
 
     </application>
 

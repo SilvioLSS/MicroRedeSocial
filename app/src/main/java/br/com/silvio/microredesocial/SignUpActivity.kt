@@ -1,5 +1,6 @@
-package br.com.silvio.miniredesocial
+package br.com.silvio.microredesocial
 
+import br.com.silvio.microredesocial.ProfileActivity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -49,7 +50,7 @@ class SignUpActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 binding.btnCreateAccount.isEnabled = true
                 if (task.isSuccessful) {
-                    startActivity(Intent(this, HomeActivity::class.java))
+                    startActivity(Intent(this, ProfileActivity::class.java))
                     finish()
                 } else {
                     Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()

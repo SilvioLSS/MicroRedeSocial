@@ -1,4 +1,4 @@
-package br.com.silvio.miniredesocial
+package br.com.silvio.microredesocial
 
 import android.content.Intent
 import android.os.Bundle

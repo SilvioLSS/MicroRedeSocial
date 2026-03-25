@@ -1,3 +1,5 @@
+package br.com.silvio.microredesocial
+
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest

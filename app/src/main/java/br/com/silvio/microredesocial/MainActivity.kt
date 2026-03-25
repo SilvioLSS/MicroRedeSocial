@@ -5,8 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.silvio.microredesocial.databinding.ActivityMainBinding
-import br.com.silvio.miniredesocial.HomeActivity
-import br.com.silvio.miniredesocial.SignUpActivity
+import br.com.silvio.microredesocial.HomeActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
