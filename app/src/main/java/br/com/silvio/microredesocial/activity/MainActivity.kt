@@ -1,11 +1,10 @@
-package br.com.silvio.microredesocial
+package br.com.silvio.microredesocial.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.silvio.microredesocial.databinding.ActivityMainBinding
-import br.com.silvio.microredesocial.HomeActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {

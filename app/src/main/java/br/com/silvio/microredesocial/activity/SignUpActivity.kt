@@ -1,6 +1,5 @@
-package br.com.silvio.microredesocial
+package br.com.silvio.microredesocial.activity
 
-import br.com.silvio.microredesocial.ProfileActivity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
