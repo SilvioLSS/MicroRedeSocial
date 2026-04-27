@@ -1,5 +1,6 @@
 package br.com.silvio.microredesocial.activity
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -8,7 +9,10 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.appcompat.app.AppCompatActivity
 import br.com.silvio.microredesocial.databinding.ActivityCreatePostBinding
 import br.com.silvio.microredesocial.utils.Base64Converter
+import br.com.silvio.microredesocial.utils.LocalizacaoHelper
 import com.google.firebase.Firebase
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
 
 class CreatePostActivity : AppCompatActivity() {
@@ -59,37 +63,70 @@ class CreatePostActivity : AppCompatActivity() {
     }
 
     // ☁️ Salva post no Firestore
-    private fun publicarPost() {
+    private fun publicarPost(){
 
-        val descricao = binding.edtDescricao.text.toString()
+        val descricao=binding.edtDescricao.text.toString()
 
-        if (descricao.isEmpty()) {
-            Toast.makeText(this, "Digite uma descrição", Toast.LENGTH_SHORT).show()
+        if(descricao.isBlank()) return
+
+        val imagemString=
+            Base64Converter.drawableToString(
+                binding.imgPost.drawable
+            )
+
+        val auth= FirebaseAuth.getInstance()
+
+        val helper=LocalizacaoHelper(this)
+
+        if (
+            checkSelfPermission(
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ){
+            requestPermissions(
+                arrayOf(
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                ),
+                1001
+            )
             return
         }
 
-        if (binding.imgPost.drawable == null) {
-            Toast.makeText(this, "Selecione uma imagem", Toast.LENGTH_SHORT).show()
-            return
-        }
+        helper.obterCidade(
+            object: LocalizacaoHelper.Callback{
 
-        val imagemString = Base64Converter.drawableToString(binding.imgPost.drawable)
+                override fun onCidadeRecebida(cidade:String){
 
-        val db = Firebase.firestore
+                    val post= hashMapOf(
+                        "descricao" to descricao,
+                        "imageString" to imagemString,
+                        "cidade" to cidade,
+                        "autor" to auth.currentUser?.email,
+                        "data" to Timestamp.now()
+                    )
 
-        val post = hashMapOf(
-            "descricao" to descricao,
-            "imageString" to imagemString
-        )
+                    Firebase.firestore
+                        .collection("posts")
+                        .add(post)
+                        .addOnSuccessListener{
+                            Toast.makeText(
+                                this@CreatePostActivity,
+                                "Post criado",
+                                Toast.LENGTH_SHORT
+                            ).show()
 
-        db.collection("posts")
-            .add(post)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Post criado!", Toast.LENGTH_SHORT).show()
-                finish()
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Erro ao criar post", Toast.LENGTH_SHORT).show()
-            }
+                            finish()
+                        }
+                }
+
+                override fun onErro(msg:String){
+                    Toast.makeText(
+                        this@CreatePostActivity,
+                        msg,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            })
     }
 }

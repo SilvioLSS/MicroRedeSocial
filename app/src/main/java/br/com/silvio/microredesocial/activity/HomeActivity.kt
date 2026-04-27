@@ -1,23 +1,28 @@
 package br.com.silvio.microredesocial.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.silvio.microredesocial.adapter.PostAdapter
 import br.com.silvio.microredesocial.databinding.ActivityHomeBinding
 import br.com.silvio.microredesocial.model.Post
 import br.com.silvio.microredesocial.utils.Base64Converter
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.Query
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var adapter: PostAdapter
     private lateinit var posts: ArrayList<Post>
+    private var ultimoDocumento: DocumentSnapshot?=null
+    private var carregando=false
+    private var buscaCidade:String?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,39 +35,110 @@ class HomeActivity : AppCompatActivity() {
 
         // carregar feed automaticamente (melhor UX)
         carregarFeed()
-    }
 
-    private fun carregarFeed() {
+        binding.recyclerView.addOnScrollListener(
+            object: RecyclerView.OnScrollListener(){
 
-        val db = Firebase.firestore
+                override fun onScrolled(
+                    rv:RecyclerView,
+                    dx:Int,
+                    dy:Int
+                ){
 
-        db.collection("posts").get()
-            .addOnCompleteListener { task ->
+                    val lm=
+                        rv.layoutManager as LinearLayoutManager
 
-                if (task.isSuccessful) {
-
-                    posts = ArrayList()
-
-                    for (document in task.result.documents) {
-
-                        val descricao = document["descricao"].toString()
-                        val imageString = document["imageString"].toString()
-
-                        val bitmap = Base64Converter.stringToBitmap(imageString)
-
-                        posts.add(Post(descricao, bitmap))
+                    if(
+                        lm.findLastVisibleItemPosition()
+                        >= posts.size-2
+                    ){
+                        carregarFeed()
                     }
 
-                    adapter = PostAdapter(posts)
+                }})
+    }
 
-                    binding.recyclerView.layoutManager =
-                        LinearLayoutManager(this)
+    private fun carregarFeed(){
 
-                    binding.recyclerView.adapter = adapter
-                } else {
-                    Toast.makeText(this, "Erro ao carregar feed", Toast.LENGTH_SHORT).show()
+        if(carregando) return
+
+        carregando=true
+
+        var query: Query = Firebase.firestore
+            .collection("posts")
+
+        if (buscaCidade != null) {
+            query = query.whereEqualTo(
+                "cidade",
+                buscaCidade
+            )
+        }
+
+        query = query
+            .orderBy(
+                "data",
+                Query.Direction.DESCENDING
+            )
+            .limit(5)
+
+        if(ultimoDocumento!=null){
+            query=query.startAfter(
+                ultimoDocumento!!
+            )
+        }
+
+        query.get()
+            .addOnSuccessListener { docs ->
+
+                if(!::posts.isInitialized){
+                    posts= arrayListOf()
                 }
+
+                if(!docs.isEmpty){
+
+                    ultimoDocumento=
+                        docs.documents.last()
+
+                    for(doc in docs.documents){
+
+                        val bitmap=
+                            Base64Converter.stringToBitmap(
+                                doc["imageString"].toString()
+                            )
+
+                        posts.add(
+                            Post(
+                                descricao=doc["descricao"].toString(),
+                                imagem=bitmap,
+                                cidade=doc["cidade"].toString(),
+                                data=doc.getTimestamp("data"),
+                                autor=doc["autor"].toString()
+                            )
+                        )
+                    }
+
+                    if(!::adapter.isInitialized){
+                        adapter = PostAdapter(posts)
+                        binding.recyclerView.adapter = adapter
+                    }else{
+                        adapter.notifyDataSetChanged()
+                    }
+
+                    if(binding.recyclerView.adapter==null){
+                        binding.recyclerView.layoutManager=
+                            LinearLayoutManager(this)
+
+                        binding.recyclerView.adapter=
+                            adapter
+                    }else{
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+
+                carregando=false
+
             }
+
     }
 
     private fun setupUI() {
@@ -75,22 +151,33 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupListeners() {
 
-        binding.btnLogout.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
+        binding.btnBuscarCidade.setOnClickListener {
 
-            Toast.makeText(this, "Logout realizado!", Toast.LENGTH_SHORT).show()
+            val cidadeDigitada =
+                binding.edtCidadeBusca.text
+                    .toString()
+                    .trim()
 
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            finish()
+            if(cidadeDigitada.isEmpty()){
+                Toast.makeText(
+                    this,
+                    "Digite uma cidade",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+
+            buscaCidade = cidadeDigitada
+
+            // limpa feed anterior
+            if(::posts.isInitialized){
+                posts.clear()
+            }
+
+            // reseta paginação
+            ultimoDocumento = null
+
+            carregarFeed()
         }
-
-        binding.btnNovoPost.setOnClickListener {
-            val intent = Intent(this, CreatePostActivity::class.java)
-            startActivity(intent)
-        }
-
-        carregarFeed()
     }
 }
