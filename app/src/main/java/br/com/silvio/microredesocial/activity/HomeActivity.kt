@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.Query
+import android.content.Intent
 
 class HomeActivity : AppCompatActivity() {
 
@@ -29,6 +30,10 @@ class HomeActivity : AppCompatActivity() {
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // ADICIONA ISSO AQUI
+        binding.recyclerView.layoutManager =
+            LinearLayoutManager(this)
 
         setupUI()
         setupListeners()
@@ -124,12 +129,9 @@ class HomeActivity : AppCompatActivity() {
                         adapter.notifyDataSetChanged()
                     }
 
-                    if(binding.recyclerView.adapter==null){
-                        binding.recyclerView.layoutManager=
-                            LinearLayoutManager(this)
-
-                        binding.recyclerView.adapter=
-                            adapter
+                    if(!::adapter.isInitialized){
+                        adapter = PostAdapter(posts)
+                        binding.recyclerView.adapter = adapter
                     }else{
                         adapter.notifyDataSetChanged()
                     }
@@ -148,6 +150,8 @@ class HomeActivity : AppCompatActivity() {
             binding.tvUserEmail.text = user.email ?: "Email não disponível"
         }
     }
+
+
 
     private fun setupListeners() {
 
@@ -178,6 +182,25 @@ class HomeActivity : AppCompatActivity() {
             ultimoDocumento = null
 
             carregarFeed()
+        }
+
+
+        binding.btnLogout.setOnClickListener {
+
+            FirebaseAuth.getInstance().signOut()
+
+            startActivity(
+                Intent(this, MainActivity::class.java)
+            )
+
+            finish()
+        }
+
+        binding.btnNovoPost.setOnClickListener {
+
+            startActivity(
+                Intent(this, CreatePostActivity::class.java)
+            )
         }
     }
 }

@@ -68,17 +68,13 @@ class ProfileActivity : AppCompatActivity() {
             salvarPerfil()
         }
 
-        // clicar na foto abre galeria
-        binding.profilePicture.setOnClickListener{
+        binding.profilePicture.setOnClickListener {
             abrirGaleria()
         }
 
-        /*
-        Se seu XML tiver botão alterar foto:
-        binding.btnAlterarFoto.setOnClickListener{
+        binding.btnAlterarFoto.setOnClickListener {
             abrirGaleria()
         }
-        */
     }
 
     private fun salvarPerfil(){

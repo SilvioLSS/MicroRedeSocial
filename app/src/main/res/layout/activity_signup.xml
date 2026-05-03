@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
+    android:background="@color/background"
     android:padding="24dp"
     tools:context=".activity.SignUpActivity">
 
@@ -17,11 +17,13 @@
         android:layout_marginTop="32dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
-        app:strokeColor="?attr/colorOutlineVariant"
+        app:cardBackgroundColor="@android:color/white"
+        app:strokeColor="@color/surface"
         app:strokeWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <!-- Conteúdo do formulário -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +55,8 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/logo" />
+                app:layout_constraintTop_toBottomOf="@id/logo"
+                android:textColor="@color/primary"/>
 
             <!-- Label Email -->
             <TextView
@@ -63,7 +66,7 @@
                 android:layout_marginTop="32dp"
                 android:text="Email"
                 android:textSize="16sp"
-                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textColor="@color/primary_dark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
@@ -75,14 +78,18 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lblEmail">
+                app:layout_constraintTop_toBottomOf="@id/lblEmail"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary_dark">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Digite seu email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    app:boxStrokeColor="@color/primary"
+                    app:hintTextColor="@color/primary_dark"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,9 +101,10 @@
                 android:layout_marginTop="20dp"
                 android:text="Senha"
                 android:textSize="16sp"
-                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textColor="@color/primary_dark"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilEmail" />
+                app:layout_constraintTop_toBottomOf="@id/tilEmail"
+                />
 
             <!-- Campo Senha -->
             <com.google.android.material.textfield.TextInputLayout
@@ -107,14 +115,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lblPassword"
-                app:passwordToggleEnabled="true">
+                app:passwordToggleEnabled="true"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary_dark">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Digite sua senha"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    app:boxStrokeColor="@color/primary"
+                    app:hintTextColor="@color/primary_dark"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,7 +138,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Confirmar Senha"
                 android:textSize="16sp"
-                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textColor="@color/primary_dark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tilPassword" />
 
@@ -139,14 +151,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lblConfirmPassword"
-                app:passwordToggleEnabled="true">
+                app:passwordToggleEnabled="true"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary_dark">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Confirme sua senha"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    app:boxStrokeColor="@color/primary"
+                    app:hintTextColor="@color/primary_dark"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -159,7 +175,9 @@
                 android:text="Criar Conta"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword" />
+                app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword"
+                android:backgroundTint="@color/accent"
+                android:textColor="@android:color/white"/>
 
             <!-- Botão Voltar -->
             <com.google.android.material.button.MaterialButton
@@ -168,10 +186,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Voltar"
-                android:backgroundTint="?attr/colorSurfaceVariant"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnCreateAccount" />
+                app:layout_constraintTop_toBottomOf="@id/btnCreateAccount"
+                android:backgroundTint="@color/primary"
+                android:textColor="@android:color/white"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

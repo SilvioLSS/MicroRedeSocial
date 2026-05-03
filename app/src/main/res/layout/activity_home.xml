@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <!-- Topo com usuário -->
     <LinearLayout
@@ -14,7 +15,8 @@
         android:padding="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/primary">
 
         <TextView
             android:id="@+id/tvWelcome"
@@ -22,19 +24,23 @@
             android:layout_height="wrap_content"
             android:text="Bem-vindo!"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@android:color/white"/>
 
         <TextView
             android:id="@+id/tvUserEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="email"/>
+            android:text="email"
+            android:textColor="@android:color/white"/>
 
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sair"/>
+            android:text="Sair"
+            android:backgroundTint="@color/accent"
+            android:textColor="@android:color/white"/>
     </LinearLayout>
 
     <Button
@@ -44,7 +50,9 @@
         android:text="Novo Post"
         android:layout_margin="8dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/accent"
+        android:textColor="@android:color/white"/>
 
     <EditText
         android:id="@+id/edtCidadeBusca"
@@ -54,7 +62,9 @@
         android:layout_margin="8dp"
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnBuscarCidade"/>
+        app:layout_constraintEnd_toStartOf="@id/btnBuscarCidade"
+        android:backgroundTint="@color/primary"
+        android:textColorHint="@color/primary_dark"/>
 
     <Button
         android:id="@+id/btnBuscarCidade"
@@ -63,7 +73,9 @@
         android:text="Buscar"
         android:layout_margin="8dp"
         app:layout_constraintTop_toBottomOf="@id/header"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/primary"
+        android:textColor="@android:color/white"/>
 
     <!-- FEED -->
     <androidx.recyclerview.widget.RecyclerView

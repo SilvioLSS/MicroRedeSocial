@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="@color/background">
 
     <!-- Logo -->
     <ImageView
@@ -29,7 +30,10 @@
         app:layout_constraintTop_toBottomOf="@id/logoImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/primary"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/primary_dark"/>
 
     <!-- Senha -->
     <EditText
@@ -41,7 +45,10 @@
         app:layout_constraintTop_toBottomOf="@id/editEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/primary"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/primary_dark"/>
 
     <!-- Botão Entrar -->
     <Button
@@ -52,7 +59,9 @@
         app:layout_constraintTop_toBottomOf="@id/editPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/accent"
+        android:textColor="@android:color/white"/>
 
     <!-- Botão Criar Usuário -->
     <Button
@@ -62,6 +71,8 @@
         android:text="Criar novo usuário"
         app:layout_constraintTop_toBottomOf="@id/btnLogin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/primary"
+        android:textColor="@android:color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
