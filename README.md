@@ -139,4 +139,5 @@ Exemplo no AndroidManifest:
 Projeto desenvolvido para fins acadêmicos no curso de desenvolvimento mobile.
 
 Vídeo curto: https://drive.google.com/file/d/1F-NXQR8Pz3GtAI-mBD470thFPTSr74k5/view?usp=sharing
+
 Vídeo longo: https://drive.google.com/file/d/19mk_cCt_ki-REkIXANMgOT20McEP25hT/view?usp=sharing
