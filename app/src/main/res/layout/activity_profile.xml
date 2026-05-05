@@ -42,7 +42,9 @@
         app:layout_constraintTop_toBottomOf="@id/btnAlterarFoto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/primary"/>
+        android:backgroundTint="@color/primary"
+        android:textColor="@color/primary_dark"
+        android:textColorHint="@color/primary_dark"/>
 
     <!-- Campo nome completo -->
     <EditText
@@ -55,7 +57,9 @@
         app:layout_constraintTop_toBottomOf="@id/editUsername"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/primary"/>
+        android:backgroundTint="@color/primary"
+        android:textColor="@color/primary_dark"
+        android:textColorHint="@color/primary_dark"/>
 
     <!-- Botão salvar -->
     <Button

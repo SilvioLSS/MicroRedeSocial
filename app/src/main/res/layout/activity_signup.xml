@@ -51,12 +51,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Criar Conta"
+                android:textColor="@color/primary"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/logo"
-                android:textColor="@color/primary"/>
+                app:layout_constraintTop_toBottomOf="@id/logo" />
 
             <!-- Label Email -->
             <TextView
@@ -65,8 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="Email"
-                android:textSize="16sp"
                 android:textColor="@color/primary_dark"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
@@ -76,11 +76,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/primary_dark"
+                android:textColorHint="@color/primary_dark"
+                app:boxStrokeColor="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lblEmail"
-                app:boxStrokeColor="@color/primary"
-                app:hintTextColor="@color/primary_dark">
+                app:layout_constraintTop_toBottomOf="@id/lblEmail">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtEmail"
@@ -88,8 +89,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Digite seu email"
                     android:inputType="textEmailAddress"
-                    app:boxStrokeColor="@color/primary"
-                    app:hintTextColor="@color/primary_dark"/>
+                    android:textColor="@color/primary_dark"
+                    android:textColorHint="@color/primary_dark"
+                    app:boxStrokeColor="@color/primary" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,11 +102,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Senha"
-                android:textSize="16sp"
                 android:textColor="@color/primary_dark"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilEmail"
-                />
+                app:layout_constraintTop_toBottomOf="@id/tilEmail" />
 
             <!-- Campo Senha -->
             <com.google.android.material.textfield.TextInputLayout
@@ -112,12 +113,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lblPassword"
-                app:passwordToggleEnabled="true"
-                app:boxStrokeColor="@color/primary"
-                app:hintTextColor="@color/primary_dark">
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtPassword"
@@ -125,8 +126,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Digite sua senha"
                     android:inputType="textPassword"
-                    app:boxStrokeColor="@color/primary"
-                    app:hintTextColor="@color/primary_dark"/>
+                    android:textColor="@color/primary_dark"
+                    android:textColorHint="@color/primary_dark"
+                    app:boxStrokeColor="@color/primary" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -137,8 +139,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Confirmar Senha"
-                android:textSize="16sp"
                 android:textColor="@color/primary_dark"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tilPassword" />
 
@@ -148,12 +150,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/primary_dark"
+                android:textColorHint="@color/primary_dark"
+                app:boxStrokeColor="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lblConfirmPassword"
-                app:passwordToggleEnabled="true"
-                app:boxStrokeColor="@color/primary"
-                app:hintTextColor="@color/primary_dark">
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtConfirmPassword"
@@ -161,8 +164,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Confirme sua senha"
                     android:inputType="textPassword"
-                    app:boxStrokeColor="@color/primary"
-                    app:hintTextColor="@color/primary_dark"/>
+                    android:textColor="@color/primary_dark"
+                    android:textColorHint="@color/primary_dark"
+                    app:boxStrokeColor="@color/primary" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -172,12 +176,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
+                android:backgroundTint="@color/accent"
                 android:text="Criar Conta"
+                android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword"
-                android:backgroundTint="@color/accent"
-                android:textColor="@android:color/white"/>
+                app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword" />
 
             <!-- Botão Voltar -->
             <com.google.android.material.button.MaterialButton
@@ -185,12 +189,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:backgroundTint="@color/primary"
                 android:text="Voltar"
+                android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnCreateAccount"
-                android:backgroundTint="@color/primary"
-                android:textColor="@android:color/white"/>
+                app:layout_constraintTop_toBottomOf="@id/btnCreateAccount" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
