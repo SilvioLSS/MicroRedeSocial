@@ -137,3 +137,5 @@ Exemplo no AndroidManifest:
 **Silvio Luiz Santos**
 
 Projeto desenvolvido para fins acadêmicos no curso de desenvolvimento mobile.
+
+Vídeo curto: https://drive.google.com/file/d/1F-NXQR8Pz3GtAI-mBD470thFPTSr74k5/view?usp=sharing
