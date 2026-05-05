@@ -9,5 +9,5 @@
     <color name="background">#F4EBD8</color>
     <color name="surface">#E9DDC7</color>
 
-    <color name="text_primary">#2F3A3D</color>
+    <color name="text_primary">#000000</color>
 </resources>
