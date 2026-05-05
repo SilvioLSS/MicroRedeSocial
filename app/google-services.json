@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "285011391468",
+    "project_id": "microredesocialsilviolss",
+    "storage_bucket": "microredesocialsilviolss.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285011391468:android:47a3e89a33cff93ce546c9",
+        "android_client_info": {
+          "package_name": "br.com.silvio.microredesocial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy0Ozs_lmhgSiNqY4crid-YuUYpzhzwYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
